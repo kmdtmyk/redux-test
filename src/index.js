@@ -5,6 +5,8 @@ import ReactDOM, { render } from 'react-dom'
 import { createStore, combineReducers } from 'redux'
 import { Provider, connect } from 'react-redux'
 
+import App from './App'
+
 
 
 let initialState = {
@@ -63,6 +65,21 @@ const todoApp = combineReducers({
     visibilityFilter,
     todos
 });
+
+
+
+let store = createStore(todoApp);
+
+
+
+render (
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.getElementById('root')
+)
+
+
 
 
 
