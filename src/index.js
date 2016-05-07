@@ -3,68 +3,11 @@ import React, { Component } from 'react'
 import ReactDOM, { render } from 'react-dom'
 
 import { createStore, combineReducers } from 'redux'
-import { Provider, connect } from 'react-redux'
+import { Provider } from 'react-redux'
 
+import todoApp from './reducers'
 import App from './App'
 
-
-
-let initialState = {
-    visibilityFilter : 'SHOW_ALL',
-    todos: [
-        {
-            text: 'Consider using Redux',
-            completed: true,
-        },
-        {
-            text: 'Keep all state in a single tree',
-            completed: false,
-        },
-    ]
-};
-
-
-
-
-function todos(state = [], action){
-    switch(action.type){
-        case 'ADD_TODO':
-            return [
-                    ...state.todos,
-                    {
-                        text: action.text,
-                        completed: false
-                    }
-                ];
-        case 'COMPLETE_TODO':
-            return [
-                    ...state.todos.slice(0, action.index),
-                    Object.assign({}, state.todos[action.index], {
-                        completed: true
-                    }),
-                    ...state.todos.slice(action.index + 1)
-                ];
-        default:
-            return state;
-    }
-}
-
-
-
-function visibilityFilter(state = 'SHOW_ALL', action){
-    switch(action.type){
-        case 'SET_VISIBILITY_FILTER':
-            return action.filter
-        default:
-            return state;
-    }
-}
-
-
-const todoApp = combineReducers({
-    visibilityFilter,
-    todos
-});
 
 
 
